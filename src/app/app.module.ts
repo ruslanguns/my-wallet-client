@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Mis módulos
 import { CoreModule } from './@core';
+import { SharedModule } from './shared';
 
 
 
@@ -18,7 +19,8 @@ import { CoreModule } from './@core';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    CoreModule
+    CoreModule,
+    SharedModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

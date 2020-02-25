@@ -1,0 +1,51 @@
+<div>
+
+  <div class="container">
+    <div class="content">
+      <mat-card style="margin: 1rem;">
+        <div fxLayout="row" fxLayoutAlign="space-around" class="container">
+
+          <div class="content" style="text-align: center; color: red">
+            <mat-icon>vertical_align_bottom</mat-icon> <br>
+            <span class="saldos"><b>{{ 330.00 | currency}}</b></span>
+            <br>
+            <span class="saldos-descripcion">Egresos totales</span>
+          </div>
+
+          <div class="content" style="text-align: center;">
+            <mat-icon>euro</mat-icon> <br>
+            <span class="saldos"><b>{{ 330.00 | currency}}</b></span>
+            <br>
+            <span class="saldos-descripcion">Saldo actual</span>
+          </div>
+
+          <div class="content" style="text-align: center; color: green">
+            <mat-icon>publish</mat-icon> <br>
+            <span class="saldos"><b>{{ 330.00 | currency}}</b></span>
+            <br>
+            <span class="saldos-descripcion">Ingresos totales</span>
+          </div>
+
+        </div>
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="container">
+    <div fxLayout="row" fxLayoutAlign="space-around" class="content">
+
+      <div class="blocks">
+        <button button="submit" mat-raised-button color="warn">
+          <mat-icon>remove</mat-icon> Egreso
+        </button>
+      </div>
+
+      <div class="blocks">
+        <button button="submit" mat-raised-button color="accent">
+          <mat-icon>add</mat-icon> Ingreso
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
