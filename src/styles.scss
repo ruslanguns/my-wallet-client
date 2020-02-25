@@ -11,6 +11,18 @@ body {
 }
 
 .container {
+  display: flex;
   margin-top: 0.5rem;
   font-size: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  max-width: 1000px;
+}
+
+.card {
+  width: 90vw;
+  max-width: 1000px;
 }

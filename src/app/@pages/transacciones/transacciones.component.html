@@ -7,21 +7,21 @@
 
           <div class="bloqueEstadisticas" style="color: red">
             <mat-icon>vertical_align_bottom</mat-icon> <br>
-            <span class="mat-headline"><b>{{ 425.00 | currency}}</b></span>
+            <span class="saldos-cantidad"><b>{{ 425.00 | currency}}</b></span>
             <br>
             <span class="saldos-descripcion">Egresos totales</span>
           </div>
 
           <div class="bloqueEstadisticas">
             <mat-icon>euro</mat-icon> <br>
-            <span class="mat-headline"><b>{{ 1000.00 | currency}}</b></span>
+            <span class="saldos-cantidad"><b>{{ 1000.00 | currency}}</b></span>
             <br>
             <span class="saldos-descripcion">Saldo actual</span>
           </div>
 
           <div class="bloqueEstadisticas" style="color: green">
             <mat-icon>publish</mat-icon> <br>
-            <span class="mat-headline"><b>{{ 1450.00 | currency}}</b></span>
+            <span class="saldos-cantidad"><b>{{ 1450.00 | currency}}</b></span>
             <br>
             <span class="saldos-descripcion">Ingresos totales</span>
           </div>
@@ -38,13 +38,13 @@
       <mat-button-toggle-group #botonesDeAcceso="matButtonToggleGroup">
 
         <mat-button-toggle class="botonEgreso"
-                           (click)="agregarItem('egreso')"
+                           (click)="gestionarItem('egreso')"
                            matTooltip="Agregar un gasto o egreso">
           <mat-icon>remove</mat-icon> Egreso
         </mat-button-toggle>
 
         <mat-button-toggle class="botonIngreso"
-                           (click)="agregarItem('ingreso')"
+                           (click)="gestionarItem('ingreso')"
                            matTooltip="Agregar un ingreso">
           <mat-icon>add</mat-icon> Ingreso
         </mat-button-toggle>
@@ -56,7 +56,7 @@
 
     <!-- TRANSACCIONES -->
     <div>
-      <mat-card class="card">
+      <mat-card>
         <mat-card-title>
           <div class="mat-headline">Transacciones</div>
         </mat-card-title>
@@ -64,52 +64,66 @@
 
           <mat-list>
 
-            <mat-list-item>
-              <div fxFlex="10%" class="mat-body-2" style="float: left; text-align: center; margin-right: 1rem;">23 <br>
-                DOM</div>
-
-              <div fxFlex="50%">
-                <span class="mat-subheading-2">{{ 'Compras mercadona' | uppercase }}</span>
+            <mat-list-item fxLayout="column" fxLayoutAlign="space-around">
+              <div fxFlex="10%" align="start" style="margin-right: 1rem;">
+                <div class="mat-body-2" align="center">
+                  23 <br>
+                  DOM
+                </div>
               </div>
 
-              <div fxFlex="20%">
+              <div fxFlex="55%" fxFlex.xs="40%" align="start">
+                <span class="mat-body-1">{{ 'Compras mercadona' | uppercase }}</span>
+              </div>
+
+              <div fxFlex="10%" fxFlex.xs="10%" align="start" style="margin-right: 0.5rem;">
                 <div class="mat-body-1" style="color: red"><b>{{ -425.00 | currency }}</b></div>
                 <div class="mat-caption">{{ 1000.00 | currency }}</div>
               </div>
 
-              <div fxFlex="20%">
-                <button mat-icon-button matTooltip="Eliminar item" (click)="openSnackBar('Item borrado', 'Deshacer')">
-                  <mat-icon>delete</mat-icon>
-                </button>
-                <button mat-icon-button matTooltip="Editar item">
-                  <mat-icon>edit</mat-icon>
-                </button>
+              <div fxFlex="25%" fxFlex.xs="40%" align="end">
+                <div>
+                  <button mat-icon-button matTooltip="Eliminar item"
+                          (click)="openSnackBar('Item borrado', 'Deshacer')">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                  <button mat-icon-button matTooltip="Editar item" (click)="gestionarItem('editar', 2)">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                </div>
               </div>
 
               <mat-divider></mat-divider>
             </mat-list-item>
             <br>
 
-            <mat-list-item>
-              <div fxFlex="10%" class="mat-body-2" style="float: left; text-align: center; margin-right: 1rem;">23 <br>
-                DOM</div>
-
-              <div fxFlex="50%">
-                <span class="mat-subheading-2">{{ 'Ingreso nómina' | uppercase }}</span>
+            <mat-list-item fxLayout="column" fxLayoutAlign="space-around">
+              <div fxFlex="10%" align="start" style="margin-right: 1rem;">
+                <div class="mat-body-2" align="center">
+                  23 <br>
+                  DOM
+                </div>
               </div>
 
-              <div fxFlex="20%">
+              <div fxFlex="55%" fxFlex.xs="40%" align="start">
+                <span class="mat-body-1">{{ 'Ingreso nómina' | uppercase }}</span>
+              </div>
+
+              <div fxFlex="10%" fxFlex.xs="10%" align="start" style="margin-right: 0.5rem;">
                 <div class="mat-body-1" style="color: green"><b>{{ 1425.00 | currency }}</b></div>
                 <div class="mat-caption">{{ 1425.00 | currency }}</div>
               </div>
 
-              <div fxFlex="20%" style="float: right;">
-                <button mat-icon-button matTooltip="Eliminar item" (click)="openSnackBar('Item borrado', 'Deshacer')">
-                  <mat-icon>delete</mat-icon>
-                </button>
-                <button mat-icon-button matTooltip="Editar item">
-                  <mat-icon>edit</mat-icon>
-                </button>
+              <div fxFlex="25%" fxFlex.xs="40%" align="end">
+                <div>
+                  <button mat-icon-button matTooltip="Eliminar item"
+                          (click)="openSnackBar('Item borrado', 'Deshacer')">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                  <button mat-icon-button matTooltip="Editar item" (click)="gestionarItem('editar', 2)">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                </div>
               </div>
 
               <mat-divider></mat-divider>

@@ -1,9 +1,24 @@
-<h2 mat-dialog-title>Añadir {{ data.tipo | uppercase }}</h2>
+<div mat-dialog-title *ngIf="!isEdit">
+  <div>Añadir {{ (data.tipo) | uppercase }}</div>
+</div>
 
-<form #form="ngForm" autocomplete="off">
+<div mat-dialog-title *ngIf="isEdit">
+  <div fxLayout="row" fxLayoutAlign="space-between">
+    <div>Editar entrada</div>
+    <div>
+      <button mat-button>
+        <mat-icon align="end" matTooltip="Eliminar entrada">delete</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="mat-caption">Última edición: 23/02/2020</div>
+</div>
+
+<form #form="ngForm" autocomplete="off" (ngSubmit)="onSubmit()">
 
   <mat-dialog-content>
-    <mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Descripción</mat-label>
       <input matInput
              #descripcion
              placeholder="Descripción"
@@ -15,11 +30,13 @@
       <mat-hint align="end">{{descripcion.value.length}} / 35</mat-hint>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field appearance="fill">
       <input matInput
              #cantidad
              placeholder="Cantidad"
              type="number" required
+             min="0.01"
+             pattern="^[0-9]*\.?[0-9]{0,2}$"
              [(ngModel)]="transaccion.cantidad"
              name="cantidad">
 
@@ -27,9 +44,9 @@
 
   </mat-dialog-content>
 
-  <mat-dialog-actions>
-    <button [disabled]="form.invalid" type="submit" mat-dialog-close="true" mat-button>Guardar</button>
-    <button mat-dialog-close="false" mat-raised-button color="warn">Cancelar</button>
+  <mat-dialog-actions align="end">
+    <button [disabled]="form.invalid" type="submit" mat-button>Guardar</button>
+    <button (click)="onCancel()" type="button" mat-raised-button color="warn">Cancelar</button>
   </mat-dialog-actions>
 
 </form>

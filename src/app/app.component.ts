@@ -1,6 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { AuthService } from './shared';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogLoginComponent } from './shared/components/dialog-login/dialog-login.component';
 
 @Component({
   selector: 'app-root',
@@ -12,18 +14,23 @@ export class AppComponent {
   @ViewChild('sidenav') sidenav: MatSidenav;
   title = 'my-wallet-client';
 
-  constructor(private authService: AuthService) { }
+  constructor(
+    public authService: AuthService,
+    public dialog: MatDialog
+  ) { }
 
   toggleSidenav() {
     this.sidenav.toggle();
   }
 
   login(): void {
-    console.log('Inicio de sesión');
+    this.dialog.open(DialogLoginComponent);
+    console.log('Se ha iniciado sesión');
   }
 
   logout(): void {
-    console.log('Cerrar sesión');
+    console.log('Se ha cerrado sesión');
+    this.authService.logout();
   }
 
 

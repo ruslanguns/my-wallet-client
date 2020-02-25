@@ -1,1 +1,96 @@
-<p>perfil works!</p>
+<div class="container">
+  <mat-card class="card">
+    <mat-card-title>
+      <div class="mat-headline">Mi perfil</div>
+    </mat-card-title>
+
+    <mat-card-content>
+
+      <form #form="ngForm">
+
+        <div fxLayout="row" fxLayoutAlign="space-between" style="width: 100%;">
+
+          <mat-form-field>
+            <input matInput
+                   #nombre
+                   placeholder="Nombre"
+                   type="text"
+                   maxlength="35"
+                   [(ngModel)]="usuario.nombre"
+                   name="nombre">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput
+                   #apellido
+                   placeholder="Apellido"
+                   type="text"
+                   maxlength="35"
+                   [(ngModel)]="usuario.apellido"
+                   name="apellido">
+          </mat-form-field>
+
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="space-between" style="width: 100%;">
+
+          <mat-form-field>
+            <input matInput
+                   #correo
+                   placeholder="Correo electrónico"
+                   type="text" required
+                   maxlength="35"
+                   [(ngModel)]="usuario.correo"
+                   name="correo">
+          </mat-form-field>
+
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="space-between" style="width: 100%;">
+
+          <mat-form-field>
+            <input matInput
+                   #password
+                   placeholder="Contraseña"
+                   type="password" required
+                   maxlength="35"
+                   [(ngModel)]="usuario.password"
+                   name="password">
+          </mat-form-field>
+
+        </div>
+
+        <div fxLayout="row" fxFlexAlign="center" style="width: 100%;">
+
+          <div fxFlex="25%"></div>
+          <div fxFlex="50%">
+            <button mat-raised-button
+                    color="primary"
+                    fxFill
+                    type=" submit">Guardar
+            </button>
+          </div>
+          <div fxFlex="25%"></div>
+
+        </div>
+
+        <div fxLayout="row" fxFlexAlign="center" style="width: 100%; margin-top: 25px;">
+
+          <div fxFlex="100%">
+            <button mat-button
+                    color="warn"
+                    fxFill
+                    type=" button">Eliminar mi cuenta y todos mis datos con ella
+            </button>
+          </div>
+
+        </div>
+
+
+
+
+      </form>
+
+    </mat-card-content>
+  </mat-card>
+</div>

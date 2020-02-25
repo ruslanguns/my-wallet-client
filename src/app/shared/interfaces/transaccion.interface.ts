@@ -5,7 +5,7 @@ export enum EnumTransaccion {
 }
 
 export interface ITransaccion {
-  id?: string;
+  id?: string | number;
   descripcion: string;
   tipo: EnumTransaccion;
   cantidad: number;

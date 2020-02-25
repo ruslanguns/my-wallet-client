@@ -3,23 +3,23 @@
   <!-- SIDENAV -->
   <mat-sidenav #sidenav role="navigation">
     <mat-nav-list>
-      <a mat-list-item (click)="login(); toggleSidenav()">
+      <a mat-list-item *ngIf="!authService.autenticado" (click)="login(); toggleSidenav()">
         <mat-icon class="icon">input</mat-icon>
-        <span class="label">Login</span>
+        <span class="label">Inciar sesión / Registro</span>
       </a>
       <a mat-list-item (click)="toggleSidenav()" routerLink="/">
         <mat-icon class="icon">home</mat-icon>
         <span class="label">Inicio</span>
       </a>
-      <a mat-list-item (click)="toggleSidenav()" routerLink="/transacciones">
+      <a mat-list-item *ngIf="authService.autenticado" (click)="toggleSidenav()" routerLink="/transacciones">
         <mat-icon class="icon">euro_symbol</mat-icon>
         <span class="label">Transacciones</span>
       </a>
-      <a mat-list-item (click)="toggleSidenav()" routerLink="/perfil">
+      <a mat-list-item *ngIf="authService.autenticado" (click)="toggleSidenav()" routerLink="/perfil">
         <mat-icon class="icon">account_box</mat-icon>
         <span class="label">Perfil</span>
       </a>
-      <a mat-list-item (click)="logout(); toggleSidenav()" type="button">
+      <a mat-list-item *ngIf="authService.autenticado" (click)="logout(); toggleSidenav()" type="button">
         <mat-icon class="icon">exit_to_app</mat-icon>
         <span class="label">Cerrar sesión</span>
       </a>
@@ -43,10 +43,10 @@
       </div>
       <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
         <ul fxLayout fxLayoutGap="20px" class="navigation-items">
-          <li>
+          <li *ngIf="!authService.autenticado">
             <a>
               <mat-icon class="icon">input</mat-icon>
-              <span class="label"> Iniciar sesión</span>
+              <span class="label" (click)="login();">Inciar sesión</span>
             </a>
           </li>
           <li>
@@ -55,22 +55,22 @@
               <span class="label"> Inicio</span>
             </a>
           </li>
-          <li>
+          <li *ngIf="authService.autenticado">
             <a
                routerLink="/transacciones">
               <mat-icon class="icon">euro_symbol</mat-icon>
               <span class="label">Transacciones</span>
             </a>
           </li>
-          <li>
+          <li *ngIf="authService.autenticado">
             <a
                routerLink="/perfil">
               <mat-icon class="icon">account_box</mat-icon>
               <span class="label">Perfil</span>
             </a>
           </li>
-          <li>
-            <a type="button">
+          <li *ngIf="authService.autenticado">
+            <a type="button" (click)="logout();">
               <mat-icon class="icon">exit_to_app</mat-icon>
               <span class="label">Cerrar sesión</span>
             </a>

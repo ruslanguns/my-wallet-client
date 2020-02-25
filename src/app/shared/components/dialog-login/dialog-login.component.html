@@ -1,0 +1,88 @@
+<div mat-dialog-title>
+  {{ (!registerForm) ? 'Inicio de sesión' : 'Formulario de registro' }}
+</div>
+
+<form #form="ngForm" (ngSubmit)="onSubmit(form)" novalidate>
+  <div mat-dialog-content>
+
+    <div *ngIf="registerForm" fxLayout="row" style="width: 100%;">
+
+      <mat-form-field>
+        <input matInput
+               #nombre
+               fxFill
+               placeholder="Nombre"
+               type="text"
+               width="40%"
+               [(ngModel)]="usuario.nombre"
+               name="nombre">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput
+               #apellido
+               fxFill
+               placeholder="Apellido"
+               type="text"
+               width="40%"
+               [(ngModel)]="usuario.apellido"
+               name="apellido">
+      </mat-form-field>
+
+    </div>
+
+    <div fxLayout="column" style="width: 100%;">
+
+      <mat-form-field>
+        <input matInput
+               #correo
+               fxFill
+               placeholder="Correo electrónico"
+               type="text" required
+               [(ngModel)]="usuario.correo"
+               name="correo">
+      </mat-form-field>
+
+    </div>
+
+    <div fxLayout="column" style="width: 100%;">
+
+      <mat-form-field>
+        <input matInput
+               #password
+               fxFill
+               placeholder="Contraseña"
+               type="password" required
+               [(ngModel)]="usuario.password"
+               name="password">
+      </mat-form-field>
+
+    </div>
+  </div>
+  <mat-dialog-actions>
+
+    <div fxLayout="row" fxFlexAlign="center" style="width: 100%;">
+
+      <div fxFlex="100%">
+        <button mat-raised-button
+                [disabled]="!form.valid"
+                color="primary"
+                fxFill
+                type="submit">Iniciar sesión
+        </button>
+      </div>
+
+    </div>
+    <div fxLayout="row" fxFlexAlign="center" style="width: 100%; margin-top: 10px;">
+
+      <div fxFlex="100%">
+        <button mat-button
+                fxFill
+                (click)="registerForm = !registerForm; resetForm(form); $event.preventDefault()"
+                type=" button">
+          {{ (registerForm) ? '¿Ya tienes una cuenta?' : '¿No tienes una cuenta?'}}
+        </button>
+      </div>
+
+    </div>
+  </mat-dialog-actions>
+</form>

@@ -4,6 +4,7 @@ import { MatButtonToggleGroup } from '@angular/material/button-toggle';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog'
 import { DialogAgregarTransaccionComponent } from '../../shared/components/dialog-agregar-transaccion/dialog-agregar-transaccion.component';
+import { ITransaccion, EnumTransaccion } from '../../shared/interfaces/transaccion.interface';
 
 @Component({
   selector: 'app-transacciones',
@@ -39,14 +40,25 @@ export class TransaccionesComponent implements OnInit {
 
 
   /**
-   * Añadir EGRESO / INGRESO
+   * Añadir o Editar EGRESO / INGRESO
    * @param tipo Se especifica el tipo, en este caso solo hay dos: ingreso y egreso
    */
-  agregarItem(tipo: string) {
+  gestionarItem(tipo: string, id?: string | number) {
 
-    const dialogRef = this.dialog.open(DialogAgregarTransaccionComponent, { data: { tipo }, width: '900px', })
-    dialogRef.afterClosed()
-      .subscribe(result => console.log(result))
+    const item: ITransaccion = {
+      id,
+      descripcion: 'Compras mercadona',
+      cantidad: 425,
+      tipo: EnumTransaccion.EGRESO
+    }
+
+    const dialogRef = this.dialog.open(DialogAgregarTransaccionComponent, { data: { tipo, item }, width: '900px', })
+    dialogRef
+      .componentInstance
+      .event
+      .subscribe((res: { data: ITransaccion }) => {
+        console.log(res.data);
+      })
   }
 
 

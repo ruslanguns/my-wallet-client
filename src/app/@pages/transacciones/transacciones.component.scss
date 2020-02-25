@@ -14,7 +14,7 @@ mat-card {
 }
 
 mat-button-toggle {
-  width: 47vw;
+  width: 50vw;
   color: white;
 }
 
@@ -28,4 +28,12 @@ mat-button-toggle {
 
 .botonIngreso {
   background-color: rgb(43, 139, 30);
+}
+
+.saldos-cantidad {
+  font-size: large;
+}
+
+.saldos-descripcion {
+  font-size: small;
 }
