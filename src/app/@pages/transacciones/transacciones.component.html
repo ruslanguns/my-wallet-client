@@ -1,52 +1,126 @@
-<div>
-
-  <div class="container">
-    <div class="content">
+<div class="container">
+  <div class="content">
+    <!-- ESTADÍSTICAS -->
+    <div>
       <mat-card style="margin: 1rem;">
         <div fxLayout="row" fxLayoutAlign="space-around" class="container">
 
-          <div class="content" style="text-align: center; color: red">
+          <div class="bloqueEstadisticas" style="color: red">
             <mat-icon>vertical_align_bottom</mat-icon> <br>
-            <span class="saldos"><b>{{ 330.00 | currency}}</b></span>
+            <span class="mat-headline"><b>{{ 425.00 | currency}}</b></span>
             <br>
             <span class="saldos-descripcion">Egresos totales</span>
           </div>
 
-          <div class="content" style="text-align: center;">
+          <div class="bloqueEstadisticas">
             <mat-icon>euro</mat-icon> <br>
-            <span class="saldos"><b>{{ 330.00 | currency}}</b></span>
+            <span class="mat-headline"><b>{{ 1000.00 | currency}}</b></span>
             <br>
             <span class="saldos-descripcion">Saldo actual</span>
           </div>
 
-          <div class="content" style="text-align: center; color: green">
+          <div class="bloqueEstadisticas" style="color: green">
             <mat-icon>publish</mat-icon> <br>
-            <span class="saldos"><b>{{ 330.00 | currency}}</b></span>
+            <span class="mat-headline"><b>{{ 1450.00 | currency}}</b></span>
             <br>
             <span class="saldos-descripcion">Ingresos totales</span>
           </div>
 
         </div>
+
       </mat-card>
     </div>
-  </div>
+    <!-- // ESTADÍSTICAS -->
 
-  <div class="container">
+    <!-- BOTONES DE ACCESO -->
     <div fxLayout="row" fxLayoutAlign="space-around" class="content">
 
-      <div class="blocks">
-        <button button="submit" mat-raised-button color="warn">
-          <mat-icon>remove</mat-icon> Egreso
-        </button>
-      </div>
+      <mat-button-toggle-group #botonesDeAcceso="matButtonToggleGroup">
 
-      <div class="blocks">
-        <button button="submit" mat-raised-button color="accent">
+        <mat-button-toggle class="botonEgreso"
+                           (click)="agregarItem('egreso')"
+                           matTooltip="Agregar un gasto o egreso">
+          <mat-icon>remove</mat-icon> Egreso
+        </mat-button-toggle>
+
+        <mat-button-toggle class="botonIngreso"
+                           (click)="agregarItem('ingreso')"
+                           matTooltip="Agregar un ingreso">
           <mat-icon>add</mat-icon> Ingreso
-        </button>
-      </div>
+        </mat-button-toggle>
+
+      </mat-button-toggle-group>
 
     </div>
-  </div>
+    <!-- // BOTONES DE ACCESO -->
 
+    <!-- TRANSACCIONES -->
+    <div>
+      <mat-card class="card">
+        <mat-card-title>
+          <div class="mat-headline">Transacciones</div>
+        </mat-card-title>
+        <mat-card-content>
+
+          <mat-list>
+
+            <mat-list-item>
+              <div fxFlex="10%" class="mat-body-2" style="float: left; text-align: center; margin-right: 1rem;">23 <br>
+                DOM</div>
+
+              <div fxFlex="50%">
+                <span class="mat-subheading-2">{{ 'Compras mercadona' | uppercase }}</span>
+              </div>
+
+              <div fxFlex="20%">
+                <div class="mat-body-1" style="color: red"><b>{{ -425.00 | currency }}</b></div>
+                <div class="mat-caption">{{ 1000.00 | currency }}</div>
+              </div>
+
+              <div fxFlex="20%">
+                <button mat-icon-button matTooltip="Eliminar item" (click)="openSnackBar('Item borrado', 'Deshacer')">
+                  <mat-icon>delete</mat-icon>
+                </button>
+                <button mat-icon-button matTooltip="Editar item">
+                  <mat-icon>edit</mat-icon>
+                </button>
+              </div>
+
+              <mat-divider></mat-divider>
+            </mat-list-item>
+            <br>
+
+            <mat-list-item>
+              <div fxFlex="10%" class="mat-body-2" style="float: left; text-align: center; margin-right: 1rem;">23 <br>
+                DOM</div>
+
+              <div fxFlex="50%">
+                <span class="mat-subheading-2">{{ 'Ingreso nómina' | uppercase }}</span>
+              </div>
+
+              <div fxFlex="20%">
+                <div class="mat-body-1" style="color: green"><b>{{ 1425.00 | currency }}</b></div>
+                <div class="mat-caption">{{ 1425.00 | currency }}</div>
+              </div>
+
+              <div fxFlex="20%" style="float: right;">
+                <button mat-icon-button matTooltip="Eliminar item" (click)="openSnackBar('Item borrado', 'Deshacer')">
+                  <mat-icon>delete</mat-icon>
+                </button>
+                <button mat-icon-button matTooltip="Editar item">
+                  <mat-icon>edit</mat-icon>
+                </button>
+              </div>
+
+              <mat-divider></mat-divider>
+            </mat-list-item>
+
+          </mat-list>
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <!-- // TRANSACCIONES -->
+
+  </div>
 </div>

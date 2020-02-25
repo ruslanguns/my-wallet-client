@@ -5,12 +5,16 @@ import { CoreModule } from '../@core/core.module';
 // Mis servicios
 import { AuthService } from './services/auth.service';
 
+// Mis components
+import { DialogTestComponent } from './components/dialog-test/dialog-test.component';
+import { DialogAgregarTransaccionComponent } from './components/dialog-agregar-transaccion/dialog-agregar-transaccion.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [DialogTestComponent, DialogAgregarTransaccionComponent],
   imports: [CommonModule, CoreModule],
-  exports: []
+  exports: [DialogTestComponent, DialogAgregarTransaccionComponent],
+  entryComponents: [DialogTestComponent, DialogAgregarTransaccionComponent]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {
