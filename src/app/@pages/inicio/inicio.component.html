@@ -2,16 +2,24 @@
   <div class="content">
     <mat-card class="card">
       <mat-card-title style="text-align:center; margin-top: 2rem;">
-        <div class="mat-headline">Bienvenido a My Wallet APP</div>
+        <div class="mat-display-1">Bienvenido a My Wallet APP</div>
       </mat-card-title>
       <mat-card-content>
         <p>
           Con ésta aplicación podrás controlar tus gastos y llevar cuenta de tu billetera.
         </p>
-        <p>
+        <p align="center" class="mat-caption">
           <b>Registrate y usa esta app de forma totalmente gratuita</b>
         </p>
       </mat-card-content>
+
+      <mat-card-actions align="center">
+        <button fxFill mat-raised-button type="button" (click)="openLoginDialog()" color="accent">Iniciar sesión o crear
+          cuenta</button>
+      </mat-card-actions>
+
+      <mat-card-footer align="center">
+      </mat-card-footer>
     </mat-card>
   </div>
 </div>
