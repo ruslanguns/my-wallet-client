@@ -94,7 +94,7 @@
       <div fxFlex="100%">
         <button mat-button
                 fxFill
-                (click)="registerForm = !registerForm; resetForm(form); $event.preventDefault()"
+                (click)="registerForm = !registerForm; form.resetForm(); $event.preventDefault()"
                 type=" button">
           {{ (registerForm) ? '¿Ya tienes una cuenta?' : '¿No tienes una cuenta?'}}
         </button>

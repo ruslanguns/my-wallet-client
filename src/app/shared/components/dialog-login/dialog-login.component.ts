@@ -39,8 +39,4 @@ export class DialogLoginComponent implements OnInit {
     }
   }
 
-  resetForm(f: NgForm): void {
-    f.resetForm();
-  }
-
 }

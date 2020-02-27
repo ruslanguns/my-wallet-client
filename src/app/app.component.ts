@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { AuthService } from './shared';
 import { MatDialog } from '@angular/material/dialog';
@@ -9,15 +9,20 @@ import { DialogLoginComponent } from './shared/components/dialog-login/dialog-lo
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   @ViewChild('sidenav') sidenav: MatSidenav;
   title = 'my-wallet-client';
+  estaAutenticado: boolean;
 
   constructor(
-    public authService: AuthService,
+    private authService: AuthService,
     public dialog: MatDialog
   ) { }
+
+  ngOnInit(): void {
+    this.estaAutenticado = this.authService.estaAutenticado();
+  }
 
   toggleSidenav() {
     this.sidenav.toggle();
@@ -25,7 +30,6 @@ export class AppComponent {
 
   login(): void {
     this.dialog.open(DialogLoginComponent);
-    console.log('Se ha iniciado sesión');
   }
 
   logout(): void {
