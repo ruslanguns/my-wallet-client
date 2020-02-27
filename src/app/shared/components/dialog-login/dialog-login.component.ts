@@ -6,14 +6,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 @Component({
   selector: 'app-dialog-login',
   templateUrl: './dialog-login.component.html',
-  styles: [`
-    .mat-dialog-container {
-      min-width: 100%;
-    }
-    mat-dialog-content {
-      min-width: 1000px;
-    }
-  `]
+  styles: []
 })
 export class DialogLoginComponent implements OnInit {
 

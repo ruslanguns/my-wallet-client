@@ -8,33 +8,36 @@
 
       <form #form="ngForm">
 
-        <div fxLayout="row" fxLayoutAlign="space-between" style="width: 100%;">
+        <div fxLayout="row" fxLayout.xs="column">
 
-          <mat-form-field>
-            <input matInput
-                   #nombre
-                   placeholder="Nombre"
-                   type="text"
-                   maxlength="35"
-                   [(ngModel)]="usuario.nombre"
-                   name="nombre">
-          </mat-form-field>
-
-          <mat-form-field>
-            <input matInput
-                   #apellido
-                   placeholder="Apellido"
-                   type="text"
-                   maxlength="35"
-                   [(ngModel)]="usuario.apellido"
-                   name="apellido">
-          </mat-form-field>
+          <div fxFlex="100%">
+            <mat-form-field fxFill>
+              <input matInput
+                     #nombre
+                     placeholder="Nombre"
+                     type="text"
+                     maxlength="35"
+                     [(ngModel)]="usuario.nombre"
+                     name="nombre">
+            </mat-form-field>
+          </div>
+          <div fxFlex="100%">
+            <mat-form-field fxFill>
+              <input matInput
+                     #apellido
+                     placeholder="Apellido"
+                     type="text"
+                     maxlength="35"
+                     [(ngModel)]="usuario.apellido"
+                     name="apellido">
+            </mat-form-field>
+          </div>
 
         </div>
 
-        <div fxLayout="row" fxLayoutAlign="space-between" style="width: 100%;">
+        <div fxLayout="row">
 
-          <mat-form-field>
+          <mat-form-field fxFill>
             <input matInput
                    #correo
                    placeholder="Correo electrónico"
@@ -46,9 +49,9 @@
 
         </div>
 
-        <div fxLayout="row" fxLayoutAlign="space-between" style="width: 100%;">
+        <div fxLayout="row">
 
-          <mat-form-field>
+          <mat-form-field fxFill>
             <input matInput
                    #password
                    placeholder="Contraseña"
@@ -60,9 +63,8 @@
 
         </div>
 
-        <div fxLayout="row" fxFlexAlign="center" style="width: 100%;">
+        <div fxLayout="row" fxLayoutAlign="center">
 
-          <div fxFlex="25%"></div>
           <div fxFlex="50%">
             <button mat-raised-button
                     color="primary"
@@ -70,11 +72,10 @@
                     type=" submit">Guardar
             </button>
           </div>
-          <div fxFlex="25%"></div>
 
         </div>
 
-        <div fxLayout="row" fxFlexAlign="center" style="width: 100%; margin-top: 25px;">
+        <div fxLayout="row" fxFlexAlign="center" style="margin-top: 25px;">
 
           <div fxFlex="100%">
             <button mat-button

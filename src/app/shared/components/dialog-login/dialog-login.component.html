@@ -5,28 +5,29 @@
 <form #form="ngForm" (ngSubmit)="onSubmit(form)" novalidate>
   <div mat-dialog-content>
 
-    <div *ngIf="registerForm" fxLayout="row" style="width: 100%;">
+    <div *ngIf="registerForm" fxLayout="row" fxLayout.xs="column">
 
-      <mat-form-field>
-        <input matInput
-               #nombre
-               fxFill
-               placeholder="Nombre"
-               type="text"
-               width="40%"
-               [(ngModel)]="usuario.nombre"
-               name="nombre">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput
-               #apellido
-               fxFill
-               placeholder="Apellido"
-               type="text"
-               width="40%"
-               [(ngModel)]="usuario.apellido"
-               name="apellido">
-      </mat-form-field>
+      <div>
+        <mat-form-field fxFill>
+          <input matInput
+                 #nombre
+                 placeholder=" Nombre"
+                 type="text"
+                 [(ngModel)]="usuario.nombre"
+                 name="nombre">
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field fxFill>
+          <input matInput
+                 #apellido
+                 placeholder="Apellido"
+                 type="text"
+                 [(ngModel)]="usuario.apellido"
+                 name="apellido">
+        </mat-form-field>
+      </div>
 
     </div>
 
@@ -35,7 +36,6 @@
       <mat-form-field>
         <input matInput
                #correo
-               fxFill
                placeholder="Correo electrónico"
                type="text" required
                [(ngModel)]="usuario.correo"
@@ -49,7 +49,6 @@
       <mat-form-field>
         <input matInput
                #password
-               fxFill
                placeholder="Contraseña"
                type="password" required
                [(ngModel)]="usuario.password"
@@ -62,7 +61,7 @@
 
     <div fxLayout="row" fxFlexAlign="center" style="width: 100%;">
 
-      <div fxFlex="100%">
+      <div>
         <button mat-raised-button
                 [disabled]="!form.valid"
                 color="primary"
