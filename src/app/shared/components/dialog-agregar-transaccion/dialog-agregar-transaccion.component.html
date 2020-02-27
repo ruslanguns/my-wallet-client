@@ -20,16 +20,16 @@
     <mat-form-field appearance="outline">
       <mat-label>Descripción</mat-label>
       <input matInput
-             #descripcion
+             #descripcion="ngModel"
              placeholder="Descripción"
              type="text" required
              maxlength="35"
              [(ngModel)]="transaccion.descripcion"
              name="descripcion">
       <mat-hint align="start"><strong>Introduzca una descripción corta</strong> </mat-hint>
-      <mat-hint align="end">{{descripcion.value.length}} / 35</mat-hint>
+      <mat-hint align="end">{{descripcion?.value?.length}} / 35</mat-hint>
 
-      <mat-error *ngIf="form.controls['descripcion']?.errors?.required">Este campo es obligatorio</mat-error>
+      <mat-error *ngIf="descripcion?.errors?.required">Este campo es obligatorio</mat-error>
 
 
     </mat-form-field>
@@ -38,21 +38,24 @@
 
       <mat-label>Cantidad</mat-label>
       <input matInput
-             #cantidad
+             #cantidad="ngModel"
              type="text"
              min="0.01" required
-             pattern="^\d+((\.|\,)\d{2})?$"
+             [pattern]="CantidadRegex"
              [(ngModel)]="transaccion.cantidad"
              style="text-align: right; -moz-appearance: textfield;"
              name="cantidad">
       <span matPrefix>€&nbsp;</span>
-      <mat-hint align="start"><strong>Solo se aceptan valores numéricos</strong> </mat-hint>
+      <mat-hint align="start">
+        <strong>
+          Introduzca la cantidad de su {{ (data.tipo === 'editar') ? 'transacción' : data.tipo }}
+        </strong>
+      </mat-hint>
 
-      <mat-error *ngIf="form.controls['cantidad']?.errors?.required">Este campo es obligatorio</mat-error>
-      <mat-error *ngIf="form.controls['cantidad']?.errors?.pattern">
-        El valor introducido no es un formato válido
+      <mat-error>
+        <span *ngIf="cantidad?.errors?.required">Este campo es obligatorio</span>
+        <span *ngIf="cantidad?.errors?.pattern">El valor introducido no tiene un formato válido</span>
       </mat-error>
-
 
     </mat-form-field>
 

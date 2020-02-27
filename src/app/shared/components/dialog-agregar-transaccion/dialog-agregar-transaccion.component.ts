@@ -2,6 +2,7 @@ import { Component, OnInit, Inject, EventEmitter } from '@angular/core';
 
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ITransaccion, EnumTransaccion } from '../../interfaces/transaccion.interface';
+import { CANTIDAD_REGEX_PATTERN } from '../../../config/constants';
 
 
 @Component({
@@ -15,6 +16,8 @@ import { ITransaccion, EnumTransaccion } from '../../interfaces/transaccion.inte
   `]
 })
 export class DialogAgregarTransaccionComponent implements OnInit {
+
+  CantidadRegex = CANTIDAD_REGEX_PATTERN;
 
   transaccion: ITransaccion = {
     descripcion: null,
