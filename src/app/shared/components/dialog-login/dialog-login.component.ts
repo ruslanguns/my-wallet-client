@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { MatDialogRef } from '@angular/material/dialog';
+import { EMAIL_REGEX_PATTERN } from '../../../config/constants';
 
 @Component({
   selector: 'app-dialog-login',
@@ -9,6 +10,8 @@ import { MatDialogRef } from '@angular/material/dialog';
   styles: []
 })
 export class DialogLoginComponent implements OnInit {
+
+  EmailRegex = EMAIL_REGEX_PATTERN;
 
   registerForm = true;
   usuario = {

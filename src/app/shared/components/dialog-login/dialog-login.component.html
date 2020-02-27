@@ -35,11 +35,18 @@
 
       <mat-form-field>
         <input matInput
-               #correo
+               #correo="ngModel"
                placeholder="Correo electrónico"
                type="text" required
                [(ngModel)]="usuario.correo"
+               [pattern]="EmailRegex"
                name="correo">
+
+        <mat-error>
+          <span *ngIf="correo?.errors?.required">Este campo es obligatorio</span>
+          <span *ngIf="correo?.errors?.pattern">No es un correo válido</span>
+        </mat-error>
+
       </mat-form-field>
 
     </div>
@@ -48,11 +55,14 @@
 
       <mat-form-field>
         <input matInput
-               #password
+               #password="ngModel"
                placeholder="Contraseña"
                type="password" required
                [(ngModel)]="usuario.password"
                name="password">
+
+        <mat-error *ngIf="password.errors.required">Este campo es obligatorio</mat-error>
+
       </mat-form-field>
 
     </div>
