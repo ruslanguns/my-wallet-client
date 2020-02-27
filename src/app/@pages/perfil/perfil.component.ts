@@ -10,6 +10,7 @@ import { EMAIL_REGEX_PATTERN } from '../../config/constants';
 export class PerfilComponent implements OnInit {
 
   EmailRegex = EMAIL_REGEX_PATTERN;
+  hide = true;
 
   usuario: IUser = {
     nombre: '',

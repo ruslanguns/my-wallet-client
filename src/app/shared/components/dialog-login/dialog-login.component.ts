@@ -12,6 +12,7 @@ import { EMAIL_REGEX_PATTERN } from '../../../config/constants';
 export class DialogLoginComponent implements OnInit {
 
   EmailRegex = EMAIL_REGEX_PATTERN;
+  hide = true;
 
   registerForm = true;
   usuario = {

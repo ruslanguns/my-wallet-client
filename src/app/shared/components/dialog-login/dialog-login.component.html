@@ -57,9 +57,17 @@
         <input matInput
                #password="ngModel"
                placeholder="Contraseña"
-               type="password" required
+               [type]="hide ? 'password' : 'text'"
+               required
                [(ngModel)]="usuario.password"
                name="password">
+
+        <button mat-icon-button
+                matSuffix
+                type="button"
+                (click)="hide = !hide; $event.disableDefault()">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
 
         <mat-error *ngIf="password?.errors?.required">Este campo es obligatorio</mat-error>
 
