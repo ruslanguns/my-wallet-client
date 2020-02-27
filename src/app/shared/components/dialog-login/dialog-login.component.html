@@ -61,7 +61,7 @@
                [(ngModel)]="usuario.password"
                name="password">
 
-        <mat-error *ngIf="password.errors.required">Este campo es obligatorio</mat-error>
+        <mat-error *ngIf="password?.errors?.required">Este campo es obligatorio</mat-error>
 
       </mat-form-field>
 
