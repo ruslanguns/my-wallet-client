@@ -59,7 +59,7 @@
   </mat-dialog-content>
 
   <mat-dialog-actions align="end">
-    <button (click)="onCancel()" type="button" mat-button color="warn">Cancelar</button>
+    <button (click)="onCancel(); $event.preventDefault()" type="button" mat-button color="warn">Cancelar</button>
     <button [disabled]="form.invalid" type="submit" mat-raised-button color="primary">Guardar</button>
   </mat-dialog-actions>
 
