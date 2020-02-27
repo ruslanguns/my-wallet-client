@@ -28,20 +28,32 @@
              name="descripcion">
       <mat-hint align="start"><strong>Introduzca una descripción corta</strong> </mat-hint>
       <mat-hint align="end">{{descripcion.value.length}} / 35</mat-hint>
+
+      <mat-error *ngIf="form.controls['descripcion']?.errors?.required">Este campo es obligatorio</mat-error>
+
+
     </mat-form-field>
 
     <mat-form-field appearance="fill">
+
       <mat-label>Cantidad</mat-label>
       <input matInput
              #cantidad
-             type="number" required
-             min="0.01"
-             pattern="^[0-9]*\.?[0-9]{0,2}$"
+             type="text"
+             min="0.01" required
+             pattern="^\d+((\.|\,)\d{2})?$"
              [(ngModel)]="transaccion.cantidad"
              style="text-align: right; -moz-appearance: textfield;"
              name="cantidad">
       <span matPrefix>€&nbsp;</span>
       <mat-hint align="start"><strong>Solo se aceptan valores numéricos</strong> </mat-hint>
+
+      <mat-error *ngIf="form.controls['cantidad']?.errors?.required">Este campo es obligatorio</mat-error>
+      <mat-error *ngIf="form.controls['cantidad']?.errors?.pattern">
+        El valor introducido no es un formato válido
+      </mat-error>
+
+
     </mat-form-field>
 
   </mat-dialog-content>
