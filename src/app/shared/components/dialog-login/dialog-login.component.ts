@@ -31,12 +31,14 @@ export class DialogLoginComponent implements OnInit {
   }
 
   onSubmit(f: NgForm) {
-    if (!f.invalid) {
-      console.log(this.usuario);
-      this.authService.login();
-      f.resetForm();
-      this.dialogRef.close();
+    if (!f.valid) {
+      return;
     }
+
+    this.authService.login();
+
+    f.resetForm();
+    this.dialogRef.close();
   }
 
 }

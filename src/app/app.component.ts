@@ -3,6 +3,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { AuthService } from './shared';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogLoginComponent } from './shared/components/dialog-login/dialog-login.component';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -13,15 +14,16 @@ export class AppComponent implements OnInit {
 
   @ViewChild('sidenav') sidenav: MatSidenav;
   title = 'my-wallet-client';
-  estaAutenticado: boolean;
+  isLoggedIn$: Observable<boolean>;
 
   constructor(
     private authService: AuthService,
     public dialog: MatDialog
-  ) { }
+  ) {
+    this.isLoggedIn$ = authService.isLoggedIn$;
+  }
 
   ngOnInit(): void {
-    this.estaAutenticado = this.authService.estaAutenticado();
   }
 
   toggleSidenav() {
@@ -33,7 +35,6 @@ export class AppComponent implements OnInit {
   }
 
   logout(): void {
-    console.log('Se ha cerrado sesión');
     this.authService.logout();
   }
 

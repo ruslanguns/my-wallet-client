@@ -38,7 +38,6 @@ export class TransaccionesComponent implements OnInit {
 
   }
 
-
   /**
    * Añadir o Editar EGRESO / INGRESO
    * @param tipo Se especifica el tipo, en este caso solo hay dos: ingreso y egreso

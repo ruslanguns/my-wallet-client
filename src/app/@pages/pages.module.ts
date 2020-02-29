@@ -17,7 +17,7 @@ import { DialogTestComponent } from '../shared/components/dialog-test/dialog-tes
     CommonModule,
     PagesRoutingModule,
     CoreModule,
-    SharedModule.forRoot()
+    SharedModule
   ],
   entryComponents: [DialogTestComponent]
 })

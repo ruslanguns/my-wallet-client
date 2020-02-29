@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogLoginComponent } from '../../shared/components/dialog-login/dialog-login.component';
+import { Observable } from 'rxjs';
+import { AuthService } from '../../shared';
 
 @Component({
   selector: 'app-inicio',
@@ -8,14 +10,24 @@ import { DialogLoginComponent } from '../../shared/components/dialog-login/dialo
   styleUrls: ['./inicio.component.scss']
 })
 export class InicioComponent implements OnInit {
+  isLoggedIn$: Observable<boolean>;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(
+    private authService: AuthService,
+    public dialog: MatDialog,
+  ) {
+    this.isLoggedIn$ = authService.isLoggedIn$;
+  }
 
   ngOnInit(): void {
   }
 
-  openLoginDialog() {
+  openLoginDialog(): void {
     this.dialog.open(DialogLoginComponent);
+  }
+
+  onLogout(): void {
+    this.authService.logout();
   }
 
 }
