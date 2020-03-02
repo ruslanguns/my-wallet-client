@@ -64,40 +64,38 @@
 
           <mat-list>
 
-            <mat-list-item fxLayout="column" fxLayoutAlign="space-around">
+            <mat-list-item *ngFor="let transaccion of transacciones" fxLayout="column" fxLayoutAlign="space-around">
               <div fxFlex="10%" align="start" style="margin-right: 1rem;">
                 <div class="mat-body-2" align="center">
-                  23 <br>
-                  DOM
+                  {{ transaccion.fechaCreacion | date: 'dd' }}
+                  <br>
+                  {{ transaccion.fechaCreacion | date: 'EEE' | uppercase }}
                 </div>
               </div>
 
               <div fxFlex="55%" fxFlex.xs="40%" align="start">
-                <span class="mat-body-1">{{ 'Compras mercadona' | uppercase }}</span>
+                <span class="mat-body-1">{{ transaccion.descripcion | uppercase }}</span>
               </div>
 
               <div fxFlex="10%" fxFlex.xs="10%" align="start" style="margin-right: 0.5rem;">
-                <div class="mat-body-1" style="color: red"><b>{{ -425.00 | currency }}</b></div>
-                <div class="mat-caption">{{ 1000.00 | currency }}</div>
+                <div class="mat-body-1" style="color: red"><b>{{ transaccion.cantidad | currency:'EUR'}}</b></div>
+                <div class="mat-caption">{{ 1000.00 | currency:'EUR' }}</div>
               </div>
 
               <div fxFlex="25%" fxFlex.xs="40%" align="end">
                 <div>
-                  <button mat-icon-button matTooltip="Eliminar item"
-                          (click)="openSnackBar('Item borrado', 'Deshacer')">
+                  <button mat-icon-button matTooltip="Eliminar item" (click)="eliminar(transaccion.id)">
                     <mat-icon>delete</mat-icon>
                   </button>
-                  <button mat-icon-button matTooltip="Editar item" (click)="gestionarItem('editar', 2)">
+                  <button mat-icon-button matTooltip="Editar item" (click)="gestionarItem('editar', transaccion.id)">
                     <mat-icon>edit</mat-icon>
                   </button>
                 </div>
               </div>
-
               <mat-divider></mat-divider>
             </mat-list-item>
-            <br>
 
-            <mat-list-item fxLayout="column" fxLayoutAlign="space-around">
+            <!-- <mat-list-item fxLayout="column" fxLayoutAlign="space-around">
               <div fxFlex="10%" align="start" style="margin-right: 1rem;">
                 <div class="mat-body-2" align="center">
                   23 <br>
@@ -127,7 +125,7 @@
               </div>
 
               <mat-divider></mat-divider>
-            </mat-list-item>
+            </mat-list-item> -->
 
           </mat-list>
 
