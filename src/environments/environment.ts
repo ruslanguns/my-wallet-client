@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  hmr: false
+  hmr: false,
+  apiServer: 'http://localhost:3000'
 };
 
 /*

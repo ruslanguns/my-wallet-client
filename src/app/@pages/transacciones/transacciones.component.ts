@@ -3,6 +3,8 @@ import { MatButtonToggleGroup } from '@angular/material/button-toggle';
 import { MatDialog } from '@angular/material/dialog'
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+import { sortBy, remove } from 'lodash'
+
 import { DialogAgregarTransaccionComponent } from '../../shared/components/dialog-agregar-transaccion/dialog-agregar-transaccion.component';
 import { ITransaccion, EnumTransaccion } from '../../shared/interfaces/transaccion.interface';
 
@@ -14,53 +16,53 @@ import { ITransaccion, EnumTransaccion } from '../../shared/interfaces/transacci
 export class TransaccionesComponent implements OnInit {
 
   @ViewChild('botonesDeAcceso') botonesDeAcceso: MatButtonToggleGroup;
+
   transacciones: ITransaccion[] = [];
   date = new Date();
-  countDownValue = 5;
+  fakeData: ITransaccion[] = [
+    {
+      id: 1,
+      descripcion: 'Ingreso nómina',
+      tipo: EnumTransaccion.INGRESO,
+      cantidad: 1425,
+      fechaCreacion: new Date('2020-02-05T21:25:22+0000'),
+      fechaActualizacion: new Date('2020-02-05T21:25:22+0000'),
+    },
+    {
+      id: 2,
+      descripcion: 'Compras mercadona',
+      tipo: EnumTransaccion.EGRESO,
+      cantidad: 340,
+      fechaCreacion: new Date('2020-02-12T21:25:22+0000'),
+      fechaActualizacion: new Date('2020-02-12T21:25:22+0000'),
+    },
+    {
+      id: 3,
+      descripcion: 'Cafe amigos',
+      tipo: EnumTransaccion.EGRESO,
+      cantidad: 17.50,
+      fechaCreacion: new Date('2020-02-14T21:25:22+0000'),
+      fechaActualizacion: new Date('2020-02-14T21:25:22+0000'),
+    },
+    {
+      id: 4,
+      descripcion: 'Bonoloto',
+      tipo: EnumTransaccion.EGRESO,
+      cantidad: 5,
+      fechaCreacion: new Date('2020-02-18T21:25:22+0000'),
+      fechaActualizacion: new Date('2020-02-18T21:25:22+0000'),
+    }
+  ];
 
   constructor(
     private snackBar: MatSnackBar,
     public dialog: MatDialog
   ) {
-    this.transacciones = [
-      {
-        id: 1,
-        descripcion: 'Ingreso nómina',
-        tipo: EnumTransaccion.INGRESO,
-        cantidad: 1425,
-        fechaCreacion: new Date(this.date.setDate(this.date.getDate() - 5)),
-        fechaActualizacion: new Date(this.date.setDate(this.date.getDate() - 5)),
-      },
-      {
-        id: 2,
-        descripcion: 'Compras mercadona',
-        tipo: EnumTransaccion.EGRESO,
-        cantidad: 340,
-        fechaCreacion: new Date(this.date.setDate(this.date.getDate() - 3)),
-        fechaActualizacion: new Date(this.date.setDate(this.date.getDate() - 3)),
-      },
-      {
-        id: 3,
-        descripcion: 'Cafe amigos',
-        tipo: EnumTransaccion.EGRESO,
-        cantidad: 17.50,
-        fechaCreacion: new Date(this.date.setDate(this.date.getDate() - 2)),
-        fechaActualizacion: new Date(this.date.setDate(this.date.getDate() - 2)),
-      },
-      {
-        id: 4,
-        descripcion: 'Bonoloto',
-        tipo: EnumTransaccion.EGRESO,
-        cantidad: 5,
-        fechaCreacion: new Date(this.date.setDate(this.date.getDate() - 1)),
-        fechaActualizacion: new Date(this.date.setDate(this.date.getDate() - 1)),
-      }
-    ];
-
+    this.transacciones = this.fakeData;
+    this.obtenerTransacciones();
   }
 
   ngOnInit(): void {
-    const resultado = this.countdown(3, undefined, () => { console.log('Hemos llegado') });
   }
 
   /**
@@ -98,6 +100,7 @@ export class TransaccionesComponent implements OnInit {
         res.data.fechaActualizacion = new Date();
 
         this.agregarTransaccion(res.data);
+
       })
   }
 
@@ -106,32 +109,21 @@ export class TransaccionesComponent implements OnInit {
   }
 
   agregarTransaccion(transaccion: ITransaccion): void {
+    transaccion.id = this.transacciones.length;
+
     this.transacciones.push(transaccion);
+    this.obtenerTransacciones();
+    console.log(this.transacciones.length);
+
+
   }
 
   eliminarTransaccion(id) {
-    this.transacciones = this.transacciones.filter((item, idx) => idx !== id);
+    remove(this.transacciones, { id });
   }
 
-  /**
-   * Countdown
-   *
-   * @private
-   * @param {number} x From number
-   * @param {() => void} [onStart=() => { }] Emit something on start
-   * @param {() => void} [onEachCount=() => { }] Emit something on each step of counting
-   * @param {() => void} [onEnd=() => { }] Emit something on ending the counting
-   */
-  private countdown(
-    x: number,
-    onStart: () => void = () => { },
-    onEachCount: () => void = () => { },
-    onEnd: () => void = () => { }
-  ): void {
-    onStart();
-    const _inicio = setInterval(() => {
-      x !== 0 ? (this.countDownValue = x--, onEachCount()) : (clearInterval(_inicio), onEnd());
-    }, 1000);
+  obtenerTransacciones(): void {
+    this.transacciones = sortBy(this.transacciones, ['fechaCreacion']).reverse();
+    console.table(this.transacciones);
   }
-
 }

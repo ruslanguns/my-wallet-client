@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { EMAIL_REGEX_PATTERN } from '../../../config/constants';
+import { IUser } from '../../interfaces';
 
 @Component({
   selector: 'app-dialog-login',
@@ -15,7 +16,7 @@ export class DialogLoginComponent implements OnInit {
   hide = true;
 
   registerForm = true;
-  usuario = {
+  usuario: IUser = {
     nombre: null,
     apellido: null,
     correo: null,
@@ -35,10 +36,27 @@ export class DialogLoginComponent implements OnInit {
       return;
     }
 
-    this.authService.login();
-
-    f.resetForm();
-    this.dialogRef.close();
+    if (this.registerForm) { // Registration
+      this.authService.register(this.usuario).subscribe(
+        res => {
+          f.resetForm();
+          this.dialogRef.close();
+        },
+        err => {
+          return;
+        }
+      );
+    } else { // Login
+      this.authService.login(this.usuario).subscribe(
+        res => {
+          f.resetForm();
+          this.dialogRef.close();
+        },
+        err => {
+          return;
+        }
+      );
+    }
   }
 
 }

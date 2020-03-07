@@ -8,3 +8,8 @@ export interface IUser {
   fechaCreacion?: Date;
   fechaActualizacion?: Date;
 }
+
+export interface ILoginUser {
+  correo: string;
+  password: string;
+}

@@ -20,8 +20,9 @@ export class DialogAgregarTransaccionComponent implements OnInit {
   CantidadRegex = CANTIDAD_REGEX_PATTERN;
 
   transaccion: ITransaccion = {
+    id: 0,
     descripcion: null,
-    tipo: EnumTransaccion.INGRESO,
+    tipo: null,
     cantidad: null,
   }
   public event: EventEmitter<{ data: ITransaccion }> = new EventEmitter();
@@ -31,9 +32,18 @@ export class DialogAgregarTransaccionComponent implements OnInit {
     public dialogRef: MatDialogRef<DialogAgregarTransaccionComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { tipo: string, item?: ITransaccion }
   ) {
-    (data.tipo === 'editar')
-      ? (this.isEdit = true, this.transaccion = data.item)
-      : this.isEdit = false;
+
+    this.transaccion.tipo = data.tipo as EnumTransaccion;
+
+    switch (data.tipo) {
+      case ('editar'):
+        this.isEdit = true;
+        this.transaccion = data.item
+        break;
+      default:
+        this.isEdit = false;
+    }
+
   }
 
   ngOnInit(): void {
@@ -41,6 +51,7 @@ export class DialogAgregarTransaccionComponent implements OnInit {
 
   onSubmit(): void {
     this.event.emit({ data: this.transaccion });
+    console.log(this.transaccion);
     this.dialogRef.close();
   }
 
