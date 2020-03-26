@@ -8,7 +8,6 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { InicioComponent } from './inicio/inicio.component';
 import { TransaccionesComponent } from './transacciones/transacciones.component';
 import { PerfilComponent } from './perfil/perfil.component';
-import { DialogTestComponent } from '../shared/components/dialog-test/dialog-test.component';
 
 
 @NgModule({
@@ -19,6 +18,5 @@ import { DialogTestComponent } from '../shared/components/dialog-test/dialog-tes
     CoreModule,
     SharedModule
   ],
-  entryComponents: [DialogTestComponent]
 })
 export class PagesModule { }
